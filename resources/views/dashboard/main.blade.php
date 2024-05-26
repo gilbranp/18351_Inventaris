@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>{{ $title }}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -46,32 +47,53 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Dashboard</div>
-                            <a class="nav-link" href="/">
+
+                            {{-- <li class="nav-item active"> --}}
+                            <a class="nav-link {{ ($title ==="dashboard") ? 'active' : '' }}" href="/">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                        {{-- </li> --}}
                             <div class="sb-sidenav-menu-heading">Manajemen</div>
                             {{-- <a class="nav-link collapsed" href="/databarang" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"> --}}
-                            <a class="nav-link collapsed" href="/databarang">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Data barang
-                                {{-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> --}}
-                            </a>
-                            <a class="nav-link" href="/datauser">
+                           @can('admin')
+                           <a class="nav-link {{ ($title ==="data barang") ? 'active' : '' }}" href="/databarang">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Data barang
+                            {{-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> --}}
+                        </a>
+
+                           @endcan
+                               
+                            @can('admin')
+                            {{-- @dd($title) --}}
+                                  <a class="nav-link {{ ($title ==="data pengguna") ? 'active' : '' }}" href="/datauser">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Data Pengguna
                             </a>
-                            <a class="nav-link" href="/peminjaman">
+                            @endcan
+                          
+                            {{-- @can('admin')
+                            <a class="nav-link" href="/inventarisir">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Inventarisir
+                            </a>
+                            @endcan --}}
+                            <a class="nav-link {{ ($title ==="peminjaman") ? 'active' : '' }}" href="/peminjaman">
+                                <div class="sb-nav-link-icon"><i class="fas fa-calendar"></i></div>
                                 Peminjaman
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="/validasi">
+                                <div class="sb-nav-link-icon"><i class="fas fa-check-square"></i></div>
+                                Validasi
+                            </a>
+                            <a class="nav-link" href="/pengembalian">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Pengembalian
                             </a>
-                            <a class="nav-link" href="/ruangan">
-                                <div class="sb-nav-link-icon"><i class="fas fa-th"></i></div>
-                                Ruangan
+                            <a class="nav-link" href="/laporan">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                Laporan
                             </a>
                             <div class="sb-sidenav-menu-heading"></div>  
                         </div >

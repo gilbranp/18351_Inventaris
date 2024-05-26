@@ -19,6 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
+        'alamat',
+        'level',
         'email',
         'password',
     ];
@@ -41,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function isAdmin() {
+    //     return $this->level === 'administrator';
+    //     }
+        
 }
